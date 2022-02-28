@@ -1,0 +1,26 @@
+version: '3.6'
+services:
+  mongo-db:
+    image: 'mongo'
+    container_name: 'mongo-omnios'
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/mongodb-omnios:/data/db
+    networks:
+      - omnios
+    restart: always
+  api-service:
+    build: .
+    restart: always
+    ports:
+      - '3003:3003'
+    expose:
+      - '3003'
+    networks:
+      - omnios
+    volumes:
+      - ./src:/omnios-api/src
+ 
+networks:
+  omnios: {}

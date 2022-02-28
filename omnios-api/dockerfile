@@ -1,0 +1,10 @@
+FROM node:12.16-slim
+WORKDIR /omnios-api
+RUN npm install  @types/bcrypt -g
+RUN npm install tsc -g
+RUN npm install nodemon -g
+COPY ./package.json  /omnios-api
+RUN npm install
+COPY . /omnios-api
+EXPOSE 3003
+CMD ["nodemon"]
